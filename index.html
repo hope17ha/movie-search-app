@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Forecast APP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Weather forecast</h1>
+    
+    <form id="weather-form">
+      <input type="text" id="city-input" placeholder="Enter a city..." required />
+      <button type="submit">Search</button>
+    </form>
+
+    <div id="weather-result" class="hidden">
+      <h2 id="city-name">City</h2>
+      <p id="localtime">Local time: </p>
+      <p id="temperature">Temperature: --°C</p>
+      <p id="description">Condition: --</p>
+      <img id="weather-icon" src="" alt="Weather icon" />
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
