@@ -2,25 +2,36 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Forecast APP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Search App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Weather forecast</h1>
-    
-    <form id="weather-form">
-      <input type="text" id="city-input" placeholder="Enter a city..." required />
+    <h1>🎬 Movies Search</h1>
+
+    <form id="movie-form">
+      <input type="text" id="movie-input" placeholder="Enter movie title..." required />
       <button type="submit">Search</button>
     </form>
 
-    <div id="weather-result" class="hidden">
-      <h2 id="city-name">City</h2>
-      <p id="localtime">Local time: </p>
-      <p id="temperature">Temperature: --°C</p>
-      <p id="description">Condition: --</p>
-      <img id="weather-icon" src="" alt="Weather icon" />
+    <div id="movie-result" class="hidden">
+      <img id="movie-poster" src="" alt="Movie Poster" />
+      <div class="movie-info">
+        <h2 id="movie-title">Movie Name</h2>
+        <p id="movie-year">Year: --</p>
+        <p id="movie-genre">Genre: --</p>
+        <p id="movie-plot">Description: --</p>
+        <p id="movie-rating">IMDB rating: --</p>
+      </div>
+      <button id="more-btn" class="hidden">More info</button>
+      <div id="more-info" class="hidden">
+        <h2 id="movie-title">Additional Info</h2>
+        <p id="movie-director">Director: --</p>
+        <p id="movie-cast">Cast: --</p>
+        <p id="movie-awards">Awards: --</p>
+        <p id="movie-runtime">Runtime: --</p>
+      </div>
     </div>
   </div>
 

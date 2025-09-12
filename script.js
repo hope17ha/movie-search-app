@@ -1,47 +1,82 @@
-const APIkey = '5b61fd0faf584f2683d104945251209';
-const baseURL = 'https://api.weatherapi.com/v1';
+const APIkey = "3f5611f0";
+const baseURL = "http://www.omdbapi.com/";
+
+const form = document.getElementById("movie-form");
+const movieTitleInput = document.getElementById("movie-input");
+const movieTitle = document.getElementById("movie-title");
+const year = document.getElementById("movie-year");
+const genre = document.getElementById("movie-genre");
+const description = document.getElementById("movie-plot");
+const rating = document.getElementById("movie-rating");
+const image = document.getElementById("movie-poster");
+const movieDiv = document.getElementById("movie-result");
+
+const moreBtn = document.getElementById("more-btn");
+const movieDirector = document.getElementById('movie-director');
+const movieCast = document.getElementById('movie-cast');
+const movieAwards = document.getElementById('movie-awards');
+const movieRuntime = document.getElementById('movie-runtime');
+const moreInfoDiv = document.getElementById('more-info')
 
 
-const form = document.getElementById('weather-form');
-const cityInput = document.getElementById('city-input');
-const resultDiv = document.getElementById('weather-result');
-const city = document.getElementById('city-name');
-const temperature = document.getElementById('temperature');
-const description = document.getElementById('description');
-const weatherIcon = document.getElementById('weather-icon');
-const localTime = document.getElementById('localtime');
-
-
-form.addEventListener('submit', async(e) => {
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
-        const cityName = cityInput.value.trim(); 
 
-        if (!cityName){
+    const movie = movieTitleInput.value.trim();
 
-            throw new Error('You must enter a city name!')
-        }
+    if (!movie) {
+        alert("You must enter a movie!");
+    }
+
+    const url = `${baseURL}?t=${movie}&apikey=${APIkey}`;
 
     try {
-         const url = `${baseURL}/current.json?key=${APIkey}&q=${cityName}`
-         const response = await fetch(url);
+        const response = await fetch(url);
+        const data = await response.json();
 
-         if (!response.ok){
-            throw new Error ('City was not found.')
-         }
+        if (data.Response === "False") {
+            movieDiv.classList.add("hidden");
+            alert(data.Error || "Movie not found!");
 
-         const data = await response.json();
+            return;
+        }
 
-         city.textContent = `${data.location.name}, ${data.location.country}`;
-         localTime.textContent = `Local time: ${data.location.localtime}`;
-         temperature.textContent = `Temperature: ${data.current.temp_c}°C`
-         description.textContent = `Condition: ${data.current.condition.text}`
-         weatherIcon.src = `${data.current.condition.icon}`
+        movieTitle.textContent = data.Title;
+        image.src = data.Poster !== "N/A" ? data.Poster : null;
+        image.alt = data.Title;
+        year.textContent = `Year: ${data.Year}`;
+        genre.textContent = `Genre: ${data.Genre}`;
+        description.textContent = `Movie plot: ${data.Plot}`;
+        rating.textContent = `IMDB rating: ${data.imdbRating}`;
 
-         resultDiv.classList.remove('hidden');
+        movieDiv.classList.remove("hidden");
 
-        
+        movieDirector.textContent = `Director: ${data.Director}`;
+        movieCast.textContent = `Cast: ${data.Actors}`;
+        movieAwards.textContent = `Awards and nominations: ${data.Awards}`;
+        movieRuntime.textContent = `Runtime: ${data.Runtime}`;
+
+        moreInfoDiv.classList.add('hidden');
+        moreBtn.textContent = 'Show more';
+        moreBtn.classList.remove('hidden');
+
+
     } catch (error) {
-        alert('Error occured:' + error.message)
-        resultDiv.classList.add('hidden');
+        alert("There is something wrong:" + error.message);
     }
-})
+
+  
+    
+});
+
+moreBtn.addEventListener('click', () => {
+            if (moreInfoDiv.classList.contains('hidden')){
+                moreInfoDiv.classList.remove('hidden');
+                moreBtn.textContent = 'Show less';
+              } else {
+                moreInfoDiv.classList.add('hidden');
+                moreBtn.textContent = 'More info';
+            }
+            
+});
+
