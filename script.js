@@ -18,6 +18,9 @@ const movieAwards = document.getElementById('movie-awards');
 const movieRuntime = document.getElementById('movie-runtime');
 const moreInfoDiv = document.getElementById('more-info')
 
+const spinner = document.getElementById('loading-spinner');
+
+
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -31,8 +34,11 @@ form.addEventListener("submit", async (e) => {
     const url = `${baseURL}?t=${movie}&apikey=${APIkey}`;
 
     try {
+        spinner.classList.remove('hidden');
         const response = await fetch(url);
         const data = await response.json();
+
+        spinner.classList.add('hidden');
 
         if (data.Response === "False") {
             movieDiv.classList.add("hidden");
@@ -59,9 +65,11 @@ form.addEventListener("submit", async (e) => {
         moreInfoDiv.classList.add('hidden');
         moreBtn.textContent = 'Show more';
         moreBtn.classList.remove('hidden');
+        
 
 
     } catch (error) {
+        spinner.classList.add('hidden');
         alert("There is something wrong:" + error.message);
     }
 

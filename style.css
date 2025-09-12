@@ -81,4 +81,15 @@ body {
     display: none;
   }
 
+  #loading-spinner.hidden {
+    display: none;
+  }
+
+  #loading-spinner {
+    margin: 1rem auto;
+    font-weight: bold;
+    color: #e50914;
+    text-align: center;
+    font-size: 1.2rem;
+  }
   
