@@ -35,7 +35,11 @@ const APIkey = "your_api_key_here";
 pgsql
 Copy code
 📦 movie-search-app
+
  ┣ 📄 index.html
+ 
  ┣ 📄 style.css
+ 
  ┣ 📄 script.js
+ 
  ┗ 📄 README.md
