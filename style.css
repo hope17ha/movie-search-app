@@ -92,4 +92,12 @@ body {
     text-align: center;
     font-size: 1.2rem;
   }
+
+  #search-history h3 {
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
   
+  #search-history ul li:hover {
+    text-decoration: underline;
+  }
